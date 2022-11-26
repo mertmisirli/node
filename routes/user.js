@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
+const path = require("path");
 
 
 router.use("/list-products", function(req,res, next){
-    res.send("Ürünler Listelendi");
+    
+    res.sendFile(path.join(__dirname,"../views/index.html"));
 });
 
 

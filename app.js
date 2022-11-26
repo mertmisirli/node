@@ -5,6 +5,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const adminRoutes = require("./routes/admin");
 const userRoutes = require("./routes/user");
+const path = require("path");
 
 
 app.use(bodyParser.urlencoded({extended : false}));
@@ -17,17 +18,8 @@ app.get("/", function(req, res, next){
 
 
 app.use((req,res,next) =>{
-    res.statusCode = 404
-    res.send(
-        `
-        <html>
-        <body>
-        <h1> PAGE NOT FOUND </h1>
-        <p> Please Check Your Address</p>
-        <button style="color:red">Anasayfaya Dön</button> 
-        <body>
-        </html>
-        `)
+    res.statusCode = 404;
+    res.sendFile(path.join(__dirname, "./views/404.html"));
 });
 
 app.listen(3000, () => {
